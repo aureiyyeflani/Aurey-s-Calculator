@@ -1,0 +1,21 @@
+/* Menggunakan font Lora (untuk vibe vintage) dan Inter sebagai fallback */
+body {
+    font-family: 'Lora', 'Inter', sans-serif;
+    /* Catatan: Untuk tema vintage, font Lora lebih cocok, tapi 'Inter' tetap ada sebagai fallback. */
+}
+/* Efek klik tombol yang lebih baik (diubah untuk mencakup styling vintage dan perataan) */
+.btn-calc {
+    transition: all 0.1s ease-in-out;
+    
+    /* MODIFIKASI UNTUK VINTAGE VIBE & PERATAAN DEL */
+    border: 2px solid #5D4037; /* Cokelat tua untuk border */
+    box-shadow: 4px 4px #5D4037; /* Shadow cokelat tua */
+    display: flex; /* Untuk perataan teks di tengah */
+    align-items: center; /* Untuk perataan teks di tengah */
+    justify-content: center; /* Untuk perataan teks di tengah */
+}
+.btn-calc:active {
+    transform: scale(0.95);
+    /* MODIFIKASI UNTUK VINTAGE VIBE */
+    box-shadow: 2px 2px #5D4037; /* Shadow lebih kecil saat ditekan */
+}
