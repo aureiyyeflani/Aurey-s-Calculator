@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurey's Calculator</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+	<link href="styleaurey.css" rel="stylesheet">
+    <style>
+        /* Menggunakan font Lora untuk tampilan yang klasik */
+        body {
+            font-family: 'Lora', serif; 
+        }
+        /* Efek Transisi Tombol: Memberikan efek skala dan bayangan saat tombol ditekan, menciptakan kesan tombol mekanis yang lebih baik. */
+        .btn-calc {
+            transition: all 0.1s ease-in-out;
+            border: 2px solid #5D4037; /* Cokelat tua untuk border */ 
+            box-shadow: 4px 4px #5D4037; /* Bayangan cokelat tua untuk kesan vintage */
+            /* Memastikan teks tombol berada di tengah */
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+        }
+        .btn-calc:active {
+            transform: scale(0.95);
+            box-shadow: 2px 2px #5D4037; /* Bayangan lebih kecil saat ditekan */
+        }
+        /* Definisi Palet Warna Vintage: Set warna custom untuk tema cokelat dan beige */
+        .bg-vintage-dark { background-color: #795548; } 
+        .bg-vintage-light { background-color: #E6D7C8; } 
+        .bg-vintage-display { background-color: #4E342E; } 
+        .text-vintage-dark { color: #5D4037; } 
+        .btn-vintage-number { background-color: #BCAAA4; color: #4E342E; } 
+        .btn-vintage-number:hover { background-color: #A1887F; }
+        .btn-vintage-operator { background-color: #A0522D; color: #E6D7C8; } 
+        .btn-vintage-operator:hover { background-color: #8B4513; }
+        .btn-vintage-clear { background-color: #D32F2F; color: #E6D7C8; } 
+        .btn-vintage-clear:hover { background-color: #C62828; }
+        .btn-vintage-equal { background-color: #556B2F; color: #E6D7C8; } 
+        .btn-vintage-equal:hover { background-color: #6B8E23; }
+    </style>
+</head>
+<body class="bg-vintage-light text-vintage-dark min-h-screen flex items-center justify-center p-4">
+<div class="w-full max-w-sm bg-vintage-dark rounded-2xl shadow-2xl p-6 space-y-4 border-4 border-vintage-display">
+        
+        <div>
+            <img id="statusImage" 
+                 src="https://placehold.co/400x100/A1887F/E6D7C8?text=Aurey+Efaleani+_+1710624121" 
+                 alt="Status Kalkulator"
+                 class="w-full rounded-lg transition-all duration-300 ease-in-out shadow-inner border-2 border-vintage-display">
+        </div>
+
+        <div class="bg-vintage-display rounded-lg p-4 shadow-inner border-2 border-vintage-light">
+            <input type="text" id="display" 
+                   class="w-full bg-transparent text-right text-5xl font-mono text-white border-0 outline-none p-2" 
+                   readonly 
+                   placeholder="0">
+        </div>
+        <!--  Untuk Baris Tombol Kontrol & Pembagian  -->
+        <div class="grid grid-cols-4 gap-3">
+            <button data-value="C" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-clear">C</button>
+            <button data-value="DEL" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-operator">DEL</button>
+            <button data-value="%" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-operator">%</button>
+            <button data-value="/" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-operator">/</button>
+
+            <!--  Untuk Baris Tombol 7, 8, 9 & Perkalian  -->
+            <button data-value="7" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">7</button>
+            <button data-value="8" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">8</button>
+            <button data-value="9" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">9</button>
+            <button data-value="*" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-operator">*</button>
+
+            <!--  Untuk Baris Tombol 4, 5, 6 & Pengurangan  -->
+            <button data-value="4" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">4</button>
+            <button data-value="5" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">5</button>
+            <button data-value="6" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">6</button>
+            <button data-value="-" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-operator">-</button>
+
+            <!--  Untuk Baris Tombol 1, 2, 3 & Penjumlahan  -->
+            <button data-value="1" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">1</button>
+            <button data-value="2" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">2</button>
+            <button data-value="3" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">3</button>
+            <button data-value="+" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-operator">+</button>
+			
+			 <!--  Untuk Baris Tombol 0, Desimal & Sama Dengan  -->
+		    <button data-value="0" class="btn-calc col-span-2 text-2xl font-bold rounded-lg p-5 btn-vintage-number">0</button>
+            <button data-value="." class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-number">.</button>
+            <button data-value="=" class="btn-calc text-2xl font-bold rounded-lg p-5 btn-vintage-equal">=</button>
+        </div>
+
+    </div>
+
+    <script src="scriptaurey.js"></script>
+</body>
+</html>
+
